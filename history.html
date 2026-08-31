@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A personalized daily commute forecast, shaped by your routines, traffic, and weather.">
+  <title>Wayfinder | Trip history</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="history">
+  <div class="page-shell">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Wayfinder home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>wayfinder</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" data-page="today">Today</a>
+        <a href="patterns.html" data-page="patterns">My patterns</a>
+        <a class="active" href="history.html" data-page="history">Trip history</a>
+      </div>
+      <div class="profile-wrap">
+        <button class="profile-button" type="button" aria-label="Open profile menu" aria-expanded="false" aria-controls="profile-menu"><span>JD</span><b>Jordan Davis</b><i>⌄</i></button>
+        <div class="popover profile-menu" id="profile-menu" hidden>
+          <button type="button" data-open-profile="true">Profile</button>
+          <button type="button" data-open-preferences="true">Preferences</button>
+          <button type="button" data-demo-signout="true">Sign out</button>
+        </div>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="app-view" id="history-view" aria-labelledby="history-view-title"></section>
+    </main>
+
+    <footer><span>wayfinder <b>•</b> A clearer way there</span><span>Sample forecast data <i></i></span></footer>
+  </div>
+
+  <div class="modal-backdrop" id="preferences-modal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="preferences-title">
+      <button class="modal-close" type="button" aria-label="Close preferences">×</button>
+      <p class="eyebrow">Your routine</p>
+      <h2 id="preferences-title">Edit preferences</h2>
+      <form id="preferences-form">
+        <label>Home location<input id="home-location" type="text" value="South End" maxlength="30" placeholder="Home location"></label>
+        <label>Work location<input id="work-location" type="text" value="Cambridge" maxlength="30" placeholder="Work location"></label>
+        <label>Preferred transport mode<select id="preferred-mode"><option>Transit</option><option>Drive</option><option>Bike</option></select></label>
+        <label>Preferred departure time<input id="preferred-time" type="time" value="07:42"></label>
+        <label class="checkbox-label"><input id="avoid-tolls" type="checkbox"> Avoid tolls</label>
+        <label>Notifications<select id="notification-preference"><option value="on">Morning forecast reminders</option><option value="off">No notifications</option></select></label>
+        <div class="form-actions"><button class="cancel-button" type="button">Cancel</button><button class="save-button" type="submit">Save preferences</button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="profile-modal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+      <button class="modal-close" type="button" aria-label="Close profile">×</button>
+      <p class="eyebrow">Commuter profile</p>
+      <h2 id="profile-title">Jordan Davis</h2>
+      <div class="profile-summary"><span>JD</span><div><b>Everyday commuter</b><small>South End → Cambridge</small></div></div>
+      <dl class="detail-list"><div><dt>Preferred mode</dt><dd data-profile-mode>Transit</dd></div><div><dt>Member since</dt><dd>October 2023</dd></div><div><dt>Prediction accuracy</dt><dd>4.8 / 5</dd></div></dl>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="trip-modal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="trip-title">
+      <button class="modal-close" type="button" aria-label="Close trip details">×</button>
+      <p class="eyebrow">Trip details</p>
+      <h2 id="trip-title">A recent journey</h2>
+      <div class="trip-detail" data-trip-detail></div>
+    </section>
+  </div>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

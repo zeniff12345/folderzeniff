@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Wayfinder sign-in demo for the commute predictor front-end.">
+  <title>Wayfinder | Sign in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <div class="page-shell auth-shell">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Wayfinder home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>wayfinder</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Today</a>
+        <a href="events.html">Events</a>
+        <a href="history.html">Trip history</a>
+        <a href="preferences.html">Preferences</a>
+      </div>
+      <div class="profile-wrap">
+        <button class="profile-button" type="button" aria-label="Open account menu" aria-expanded="false">
+          <span>WD</span><b>Demo</b><i>⌄</i>
+        </button>
+      </div>
+    </nav>
+
+    <main class="auth-main">
+      <section class="auth-card" aria-labelledby="login-title">
+        <div class="auth-header">
+          <p class="eyebrow">Welcome back</p>
+          <h1 id="login-title">Sign in to Wayfinder<span>.</span></h1>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="jordan@example.com" value="jordan@example.com" required>
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" placeholder="••••••••" value="demo123" required>
+          </label>
+          <button type="submit" class="auth-button">Sign in</button>
+          <p class="auth-note">Demo mode only — this front-end does not authenticate real users.</p>
+        </form>
+
+        <div id="signed-in-state" class="signed-in-state" hidden>
+          <p class="auth-note success">You are signed in to the demo.</p>
+          <a href="index.html" class="secondary-link">Continue to dashboard</a>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>wayfinder <b>•</b> A clearer way there</span><span>Demo login <i></i></span></footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

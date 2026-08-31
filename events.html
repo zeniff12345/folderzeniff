@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Placeholder prediction dashboard for the AI commute predictor.">
+  <title>Wayfinder | Prediction center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .feature-page .page-shell {
+      max-width: 1240px;
+    }
+
+    .feature-page .welcome-row {
+      padding-top: 52px;
+    }
+
+    .feature-page .empty-state-card {
+      min-height: 330px;
+    }
+
+    .feature-page .empty-state-card h2 {
+      font-size: clamp(31px, 3vw, 44px);
+      letter-spacing: -.065em;
+      line-height: 1.04;
+      max-width: 380px;
+      margin: 18px 0 18px;
+    }
+
+    .feature-page .empty-state-card p {
+      max-width: 360px;
+      color: #bdd0c5;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .feature-page .empty-callout {
+      margin-top: 30px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.04);
+      max-width: 320px;
+    }
+
+    .feature-page .empty-callout span {
+      display: block;
+      color: #a8c4b4;
+      font: 10px "DM Mono", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .feature-page .empty-callout strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+      letter-spacing: -.05em;
+    }
+
+    .feature-page .empty-panel {
+      min-height: 348px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .feature-page .empty-panel .empty-chip {
+      margin-top: 50px;
+      padding: 16px 18px;
+      border: 1px dashed var(--line);
+      background: #fafcf9;
+      color: var(--muted);
+      font: 11px/1.7 "DM Mono", monospace;
+      border-radius: 10px;
+    }
+
+    .feature-page .empty-list {
+      margin-top: 22px;
+      padding: 22px 18px;
+      border: 1px dashed var(--line);
+      background: #fafcf9;
+      color: var(--muted);
+      font: 11px/1.7 "DM Mono", monospace;
+    }
+
+    .feature-page .empty-list strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 6px;
+      font: 700 12px Manrope, sans-serif;
+    }
+
+    .feature-page .empty-label {
+      display: inline-block;
+      padding: 5px 8px;
+      background: var(--mint);
+      color: var(--green);
+      font: 8px "DM Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .feature-page .route-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-page .route-item {
+      padding: 14px 16px;
+      border: 1px solid rgba(13, 26, 20, 0.12);
+      border-radius: 12px;
+      background: #f9fbfa;
+      color: var(--ink);
+    }
+
+    .feature-page .route-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .feature-page .route-row strong {
+      letter-spacing: -.04em;
+    }
+
+    .feature-page .route-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(31, 111, 97, 0.1);
+      color: var(--green);
+      font: 10px "DM Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .feature-page .route-meta {
+      color: var(--muted);
+      font: 12px/1.5 "DM Mono", monospace;
+    }
+
+    @media (max-width: 800px) {
+      .feature-page .welcome-row {
+        padding-top: 38px;
+      }
+    }
+  </style>
+</head>
+<body class="feature-page">
+  <div class="page-shell">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Wayfinder home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>wayfinder</span>
+      </a>
+      <div class="nav-links">
+        <a class="active" href="events.html">Forecasts</a>
+        <a href="#">Routes</a>
+        <a href="#">History</a>
+      </div>
+      <div class="profile-wrap">
+        <button class="profile-button" type="button" aria-label="Open account menu" aria-expanded="false">
+          <span>AI</span><b>System ready</b><i>⌄</i>
+        </button>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="welcome-row" aria-labelledby="feature-title">
+        <div>
+          <p class="eyebrow">Prediction center <span class="status-dot"></span> waiting for data</p>
+          <h1 id="feature-title">Commute predictions<span>.</span></h1>
+          <p class="lede">This screen will display the best travel time, route, and estimated arrival when commute data is available.</p>
+        </div>
+        <label class="date-control" for="forecast-date"><span class="calendar-icon">□</span> <span class="date-control-text"><span id="date-label">No date selected</span><span class="live-clock" id="live-clock">Pending</span></span> <span class="chevron">⌄</span><input id="forecast-date" type="date" aria-label="Select a forecast date"></label>
+      </section>
+
+      <section class="forecast-grid" aria-label="Main commute prediction area">
+        <article class="hero-card empty-state-card">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow light">No prediction yet</p>
+              <h2>Ready when your trip data is in.</h2>
+            </div>
+            <span class="spark-icon">✦</span>
+          </div>
+
+          <p>Once a commute is saved, this panel will show the recommended departure time, route, and expected journey duration.</p>
+
+          <div class="empty-callout">
+            <span>Route status</span>
+            <strong>Waiting for location data</strong>
+          </div>
+        </article>
+
+        <article class="side-card empty-panel">
+          <div class="side-title">
+            <p class="eyebrow">Conditions</p>
+            <span>Pending</span>
+          </div>
+          <div class="empty-chip">No traffic or weather feed has been connected yet.</div>
+        </article>
+
+        <article class="side-card empty-panel">
+          <div class="side-title">
+            <p class="eyebrow">Pattern insight</p>
+            <span class="empty-label">Coming soon</span>
+          </div>
+          <div class="empty-chip">Historical trip patterns will appear here after data has been recorded.</div>
+        </article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel route-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Saved journeys</p>
+              <h2>Upcoming routes</h2>
+            </div>
+          </div>
+          <div class="empty-list" id="events-list" aria-live="polite">
+            <strong>No saved routes</strong>
+            Add a home and work location or a preferred route to populate this section.
+          </div>
+        </article>
+
+        <article class="panel history-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Recent outcomes</p>
+              <h2>Trip history</h2>
+            </div>
+          </div>
+          <div class="empty-list">
+            <strong>No trip data yet</strong>
+            This area will show prior commutes, durations, and route quality once travel activity starts.
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <span>wayfinder <b>•</b> A clearer way there</span>
+      <span>Placeholder forecast view <i></i></span>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const eventsList = document.getElementById('events-list');
+      if (!eventsList) return;
+
+      const emptyState = `
+        <strong>No saved routes</strong>
+        Add a home and work location or a preferred route to populate this section.
+      `;
+
+      const renderEmptyState = () => {
+        eventsList.classList.add('empty-list');
+        eventsList.innerHTML = emptyState;
+      };
+
+      const renderEvents = (events) => {
+        if (!Array.isArray(events) || events.length === 0) {
+          renderEmptyState();
+          return;
+        }
+
+        eventsList.classList.remove('empty-list');
+        eventsList.innerHTML = `
+          <ul class="route-list">
+            ${events.map((event) => `
+              <li class="route-item">
+                <div class="route-row">
+                  <strong>${event.homeLocation} → ${event.workLocation}</strong>
+                  <span class="route-status">${event.status}</span>
+                </div>
+                <div class="route-meta">${event.preferredMode} • ${event.departureTime} • ${event.predictedDurationMinutes} min</div>
+                <div class="route-meta">${event.route} • ${event.traffic} • ${event.weather}</div>
+              </li>
+            `).join('')}
+          </ul>
+        `;
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/api/events');
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const events = await response.json();
+        renderEvents(events);
+      } catch (error) {
+        console.error('Could not load travel events:', error);
+        renderEmptyState();
+      }
+    });
+  </script>
+</body>
+</html>

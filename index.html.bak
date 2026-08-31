@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A personalized daily commute forecast, shaped by your routines, traffic, and weather.">
+  <title>Wayfinder | Your commute, made clearer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Wayfinder home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>wayfinder</span>
+      </a>
+      <div class="nav-links">
+        <a class="active" href="#forecast">Today</a>
+        <a href="#patterns">My patterns</a>
+        <a href="#history">Trip history</a>
+      </div>
+      <div class="profile-wrap">
+        <button class="profile-button" type="button" aria-label="Open profile menu" aria-expanded="false" aria-controls="profile-menu"><span>JD</span><b>Jordan Davis</b><i>⌄</i></button>
+        <div class="popover profile-menu" id="profile-menu" hidden>
+          <button type="button" data-open-profile="true">Profile</button>
+          <button type="button" data-open-preferences="true">Preferences</button>
+          <button type="button" data-demo-signout="true">Sign out</button>
+        </div>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="welcome-row" aria-labelledby="welcome-title">
+        <div>
+          <p class="eyebrow">Tuesday, October 24 <span class="status-dot"></span> Live forecast</p>
+          <h1 id="welcome-title">Good morning, Jordan<span>.</span></h1>
+          <p class="lede">Your commute, tuned to the way you move.</p>
+        </div>
+        <label class="date-control" for="forecast-date"><span class="calendar-icon">□</span> <span id="date-label">Today</span> <span class="chevron">⌄</span><input id="forecast-date" type="date" aria-label="Choose forecast date"></label>
+      </section>
+
+      <section class="forecast-grid" id="forecast" aria-label="Today's commute forecast">
+        <article class="hero-card">
+          <div class="card-heading"><div><p class="eyebrow light">Recommended departure</p><h2>Leave at <strong>7:42</strong><small>AM</small></h2></div><span class="spark-icon">✦</span></div>
+          <p class="hero-copy">A smoother morning is waiting. This is <strong>12 min earlier</strong> than your usual trip.</p>
+          <div class="journey-line"><div class="line-start"><span class="pin home-pin">⌂</span><b>Home</b><small>South End</small></div><div class="route-track"><span></span><em>28 min</em></div><div class="line-end"><span class="pin work-pin">●</span><b>Work</b><small>Cambridge</small></div></div>
+          <div class="hero-footer"><span><i class="sun-icon">☀</i> 54° clear</span><span><i class="traffic-icon">≈</i> Light traffic</span><button class="view-route-button" type="button">View route <span>→</span></button></div>
+        </article>
+
+        <article class="side-card weather-card"><div class="side-title"><p class="eyebrow">Conditions</p><span>Updated 6:58 AM</span></div><div class="weather-reading"><span class="weather-icon">☼</span><div><strong>54°</strong><p>Clear skies</p></div></div><div class="weather-range"><span>Low <b>48°</b></span><span>High <b>61°</b></span><span>Rain <b>0%</b></span></div></article>
+
+        <article class="side-card insight-card"><div class="side-title"><p class="eyebrow">Your pattern</p><span class="insight-badge">98% match</span></div><h3>Quiet streets, clear head.</h3><p>Tuesday mornings are usually your fastest. We found a route that keeps you moving.</p><a href="#patterns">See your patterns <span>→</span></a></article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel route-panel" id="route-options"><div class="panel-heading"><div><p class="eyebrow">Route options</p><h2>Choose your rhythm</h2></div><div class="menu-wrap"><button class="icon-button" type="button" aria-label="More route options" aria-expanded="false" aria-controls="route-menu">•••</button><div class="popover route-menu" id="route-menu" hidden><button type="button" data-action="save-route">Save route</button><button type="button" data-action="share-route">Share route</button><button type="button" data-action="toggle-tolls">Avoid tolls</button></div></div></div><button class="route-option selected" type="button" data-mode="Transit" data-time="28" data-route="Green Line → Red Line" data-detail="Reliable service with the best pattern match." data-condition="Light traffic and clear skies."><span class="mode-icon train">▰</span><span class="option-copy"><b>Transit</b><small>Green Line → Red Line</small></span><strong>28 min</strong><span class="option-tag">Best match</span></button><button class="route-option" type="button" data-mode="Drive" data-time="31" data-route="Via Storrow Drive" data-detail="Direct route with light traffic right now." data-condition="Light traffic, with $4.20 in tolls."><span class="mode-icon walk">⌁</span><span class="option-copy"><b>Drive</b><small>Via Storrow Drive</small></span><strong>31 min</strong><span class="option-meta">$4.20 tolls</span></button><button class="route-option" type="button" data-mode="Bike" data-time="36" data-route="Charles River path" data-detail="A clear, scenic route for an active start." data-condition="Clear route with comfortable conditions."><span class="mode-icon bike">♧</span><span class="option-copy"><b>Bike</b><small>Charles River path</small></span><strong>36 min</strong><span class="option-meta">Clear route</span></button><button class="text-button" type="button" data-open-preferences="true">Edit preferences <span>→</span></button></article>
+
+        <article class="panel history-panel" id="history"><div class="panel-heading"><div><p class="eyebrow">Recent trips</p><h2>Your week so far</h2></div><a class="small-link" href="#history">View all <span>→</span></a></div><div class="mini-chart" aria-label="A line chart showing commute times from Monday to Friday"><div class="chart-grid"><span></span><span></span><span></span></div><svg viewBox="0 0 500 130" role="img" aria-label="Commute time trend"><path class="chart-fill" d="M8 82 C65 72 78 95 125 69 S190 36 245 62 S310 79 365 49 S420 72 492 40 L492 130 L8 130 Z"></path><path class="chart-line" d="M8 82 C65 72 78 95 125 69 S190 36 245 62 S310 79 365 49 S420 72 492 40"></path><circle cx="8" cy="82" r="4"></circle><circle cx="125" cy="69" r="4"></circle><circle cx="245" cy="62" r="4"></circle><circle cx="365" cy="49" r="4"></circle><circle cx="492" cy="40" r="4"></circle></svg><div class="chart-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div><div class="history-stat"><div><strong>29 <small>min</small></strong><span>average trip</span></div><div><strong class="green">−8 <small>min</small></strong><span>vs. last week</span></div><div><strong>4.8 <small>/ 5</small></strong><span>prediction accuracy</span></div></div></article>
+      </section>
+      <section class="app-view" id="patterns-view" hidden aria-labelledby="patterns-title"></section>
+      <section class="app-view" id="history-view" hidden aria-labelledby="history-view-title"></section>
+    </main>
+
+    <footer><span>wayfinder <b>•</b> A clearer way there</span><span>Sample forecast data <i></i></span></footer>
+  </div>
+  <div class="modal-backdrop" id="route-modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="route-modal-title"><button class="modal-close" type="button" aria-label="Close route details">×</button><p class="eyebrow">Route details</p><h2 id="route-modal-title">Your way there</h2><div class="modal-route"><span class="pin home-pin">⌂</span><div><b>South End</b><small>Home</small></div><span class="modal-arrow">→</span><span class="pin work-pin">●</span><div><b>Cambridge</b><small>Work</small></div></div><dl class="detail-list"><div><dt>Mode</dt><dd data-route-mode>Transit</dd></div><div><dt>Estimated time</dt><dd><span data-route-time>28</span> min</dd></div><div><dt>Departure</dt><dd data-route-departure>7:42 AM</dd></div><div><dt>Route</dt><dd data-route-summary>Green Line → Red Line</dd></div><div><dt>Conditions</dt><dd data-route-condition>Light traffic and clear skies.</dd></div></dl><button class="save-route-button save-button" type="button">Save route</button><small class="saved-note" data-route-saved></small></section></div>
+  <div class="modal-backdrop" id="preferences-modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="preferences-title"><button class="modal-close" type="button" aria-label="Close preferences">×</button><p class="eyebrow">Your routine</p><h2 id="preferences-title">Edit preferences</h2><form id="preferences-form"><label>Preferred transport mode<select id="preferred-mode"><option>Transit</option><option>Drive</option><option>Bike</option></select></label><label>Preferred departure time<input id="preferred-time" type="time" value="07:42"></label><label class="checkbox-label"><input id="avoid-tolls" type="checkbox"> Avoid tolls</label><label>Notifications<select id="notification-preference"><option value="on">Morning forecast reminders</option><option value="off">No notifications</option></select></label><div class="form-actions"><button class="cancel-button" type="button">Cancel</button><button class="save-button" type="submit">Save preferences</button></div></form></section></div>
+  <div class="modal-backdrop" id="profile-modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="profile-title"><button class="modal-close" type="button" aria-label="Close profile">×</button><p class="eyebrow">Commuter profile</p><h2 id="profile-title">Jordan Davis</h2><div class="profile-summary"><span>JD</span><div><b>Everyday commuter</b><small>South End → Cambridge</small></div></div><dl class="detail-list"><div><dt>Preferred mode</dt><dd data-profile-mode>Transit</dd></div><div><dt>Member since</dt><dd>October 2023</dd></div><div><dt>Prediction accuracy</dt><dd>4.8 / 5</dd></div></dl></section></div>
+  <div class="modal-backdrop" id="trip-modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="trip-title"><button class="modal-close" type="button" aria-label="Close trip details">×</button><p class="eyebrow">Trip details</p><h2 id="trip-title">A recent journey</h2><div class="trip-detail" data-trip-detail></div></section></div>
+  <div class="modal-backdrop" id="history-modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="history-title"><button class="modal-close" type="button" aria-label="Close trip history">×</button><p class="eyebrow">Trip history</p><h2 id="history-title">Your recent trips</h2><div class="trip-detail"><b>Tuesday morning</b><span>Transit · 28 min · South End to Cambridge</span><small>Sample trip record for this frontend prototype.</small></div><div class="trip-detail"><b>Monday morning</b><span>Transit · 30 min · South End to Cambridge</span><small>Arrived within your usual window.</small></div></section></div>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

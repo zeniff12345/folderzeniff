@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage your commute preferences in the Wayfinder prototype.">
+  <title>Wayfinder | Preferences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="preferences-page">
+  <div class="page-shell">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Wayfinder home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>wayfinder</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Today</a>
+        <a href="events.html">Events</a>
+        <a href="history.html">Trip history</a>
+        <a class="active" href="preferences.html">Preferences</a>
+      </div>
+      <div class="profile-wrap">
+        <button class="profile-button" type="button" aria-label="Open profile menu" aria-expanded="false">
+          <span>JD</span><b>Jordan Davis</b><i>⌄</i>
+        </button>
+        <div class="popover profile-menu" id="profile-menu" hidden>
+          <button type="button" data-open-profile="true">Profile</button>
+          <button type="button" data-demo-signout="true">Sign out</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="preferences-main">
+      <section class="preferences-card" aria-labelledby="preferences-title">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Your routine</p>
+            <h1 id="preferences-title">Commute preferences<span>.</span></h1>
+          </div>
+          <a href="index.html" class="secondary-link">Back to dashboard</a>
+        </div>
+
+        <form id="preferences-page-form" class="preferences-form">
+          <div class="field-row">
+            <label>
+              <span>Home location</span>
+              <input id="pref-home" name="home" type="text" maxlength="30" placeholder="Home location" required>
+            </label>
+            <label>
+              <span>Work location</span>
+              <input id="pref-work" name="work" type="text" maxlength="30" placeholder="Work location" required>
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label>
+              <span>Preferred travel mode</span>
+              <select id="pref-mode" name="mode">
+                <option value="Transit">Transit</option>
+                <option value="Drive">Drive</option>
+                <option value="Bike">Bike</option>
+              </select>
+            </label>
+            <label>
+              <span>Arrival / departure time</span>
+              <input id="pref-time" name="time" type="time" required>
+            </label>
+          </div>
+
+          <label class="checkbox-label">
+            <input id="pref-avoid-tolls" type="checkbox">
+            <span>Avoid tolls</span>
+          </label>
+
+          <label>
+            <span>Notifications</span>
+            <select id="pref-notifications" name="notifications">
+              <option value="on">Morning forecast reminders</option>
+              <option value="off">No notifications</option>
+            </select>
+          </label>
+
+          <div class="preferences-actions">
+            <button type="button" class="cancel-button" id="preferences-cancel">Cancel</button>
+            <button type="submit" class="save-button">Save preferences</button>
+          </div>
+
+          <p id="preferences-status" class="preferences-status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer><span>wayfinder <b>•</b> A clearer way there</span><span>Updated daily <i></i></span></footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
