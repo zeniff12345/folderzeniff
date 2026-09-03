@@ -1,4 +1,4 @@
-What
+architectureWhat
 
 AI Personalized Commute Predictor is a web app that predicts a user’s best travel time, route, and expected journey duration using their preferences, past trips, traffic, and weather.
 

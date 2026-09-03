@@ -1,60 +1,39 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
 const app = express();
 
 app.use(cors());
 
-const events = [
-  {
-    id: 1,
-    userId: 'commuter-001',
-    role: 'commuter',
-    homeLocation: 'South End',
-    workLocation: 'Cambridge',
-    preferredMode: 'Transit',
-    departureTime: '07:42',
-    route: 'Green Line → Red Line',
-    predictedDurationMinutes: 28,
-    traffic: 'Light traffic',
-    weather: 'Clear skies',
-    status: 'On time'
-  },
-  {
-    id: 2,
-    userId: 'commuter-001',
-    role: 'commuter',
-    homeLocation: 'South End',
-    workLocation: 'Cambridge',
-    preferredMode: 'Drive',
-    departureTime: '08:05',
-    route: 'Via Storrow Drive',
-    predictedDurationMinutes: 31,
-    traffic: 'Moderate traffic',
-    weather: 'Partly cloudy',
-    status: 'Good'
-  },
-  {
-    id: 3,
-    userId: 'commuter-001',
-    role: 'commuter',
-    homeLocation: 'South End',
-    workLocation: 'Cambridge',
-    preferredMode: 'Bike',
-    departureTime: '07:55',
-    route: 'Charles River path',
-    predictedDurationMinutes: 35,
-    traffic: 'Clear route',
-    weather: 'Mild and sunny',
-    status: 'Comfortable'
-  }
-];
+const database = new sqlite3.Database(path.join(__dirname, 'data.db'));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
 app.get('/api/events', (req, res) => {
-  res.json(events);
+  database.all('SELECT * FROM commute_records ORDER BY id', (error, rows) => {
+    if (error) {
+      res.status(500).json({ error: 'Failed to load commute events' });
+      return;
+    }
+
+    res.json(rows.map((row) => ({
+      id: row.id,
+      userId: row.user_profile,
+      role: row.role,
+      homeLocation: row.home_location,
+      workLocation: row.work_location,
+      preferredMode: row.preferred_travel_mode,
+      departureTime: row.predicted_departure_time,
+      route: row.predicted_route,
+      predictedDurationMinutes: row.predicted_duration_minutes,
+      traffic: row.traffic_snapshot,
+      weather: row.weather_snapshot,
+      status: row.prediction_status
+    })));
+  });
 });
 
 const PORT = process.env.PORT || 3000;
