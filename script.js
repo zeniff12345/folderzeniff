@@ -41,6 +41,15 @@
 
   const defaultPreferences = { home: 'South End', work: 'Cambridge', mode: 'Transit', time: '07:42', avoidTolls: false, notifications: 'on' };
 
+  const getSavedName = () => readStorage(storageKeys.demoUser, {}).name || 'Jordan Davis';
+
+  const updateNameDisplays = () => {
+    const name = getSavedName();
+    const initials = name.split(/\s+/).map((part) => part.charAt(0)).join('').slice(0, 2).toUpperCase();
+    $$('.profile-button b, #profile-title').forEach((element) => { element.textContent = name; });
+    $$('.profile-button span, .profile-summary > span').forEach((element) => { element.textContent = initials; });
+  };
+
   const formatTime = (value) => {
     const [hour, minute] = value.split(':').map(Number);
     return `${((hour + 11) % 12) + 1}:${String(minute).padStart(2, '0')} ${hour >= 12 ? 'PM' : 'AM'}`;
@@ -263,7 +272,7 @@
       dateInput.value = dateValue;
       dateLabel.textContent = dateText;
       eyebrow.innerHTML = `${dateText} <span class="status-dot"></span> Live forecast`;
-      const greeting = selectedDate.getDay() === 0 || selectedDate.getDay() === 6 ? 'Enjoy your day' : 'Good morning, Jordan';
+      const greeting = selectedDate.getDay() === 0 || selectedDate.getDay() === 6 ? 'Enjoy your day' : `Good morning, ${getSavedName()}`;
       welcomeTitle.innerHTML = `${greeting}<span>.</span>`;
 
       const weather = (() => {
@@ -566,6 +575,7 @@
         const rawEmail = (emailInput ? emailInput.value : '').trim() || 'jordan@example.com';
         const name = rawEmail.split('@')[0].replace(/[._-]/g, ' ').split(' ').filter(Boolean).map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ') || 'Jordan Davis';
         saveStorage(storageKeys.demoUser, { signedIn: true, name, email: rawEmail });
+        updateNameDisplays();
         window.location.href = 'index.html';
       });
     }
@@ -644,5 +654,6 @@
     return;
   }
 
+  updateNameDisplays();
   dashboardInit();
 });
