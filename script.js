@@ -21,6 +21,20 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
+  const initializeIcons = () => {
+    if (window.lucide) lucide.createIcons();
+  };
+
+  $$('.modal-close').forEach((button) => {
+    button.textContent = '';
+    button.innerHTML = '<i data-lucide="x" aria-hidden="true"></i>';
+  });
+  $$('.modal-arrow').forEach((arrow) => {
+    arrow.textContent = '';
+    arrow.innerHTML = '<i data-lucide="arrow-right" aria-hidden="true"></i>';
+  });
+  initializeIcons();
+
   const readStorage = (key, fallback) => {
     try {
       const raw = localStorage.getItem(key);
@@ -169,7 +183,7 @@
             <h1 id="patterns-title">My patterns<span>.</span></h1>
             <p class="lede">A clearer picture of the way you move through the week.</p>
           </div>
-          <button class="view-back" type="button" data-view="today">← Back to today</button>
+            <button class="view-back" type="button" data-view="today"><i data-lucide="arrow-left" aria-hidden="true"></i> Back to today</button>
         </div>
         <div class="pattern-grid">
           <article class="panel pattern-lead">
@@ -217,17 +231,17 @@
             <h1 id="history-view-title">Trip history<span>.</span></h1>
             <p class="lede">A simple record of recent sample trips.</p>
           </div>
-          <button class="view-back" type="button" data-view="today">← Back to today</button>
+            <button class="view-back" type="button" data-view="today"><i data-lucide="arrow-left" aria-hidden="true"></i> Back to today</button>
         </div>
         <div class="history-list">
           ${trips.map((trip, index) => `
             <button class="history-item" type="button" data-trip-index="${index}">
               <span class="history-date">${trip.date}</span>
-              <span class="history-route"><b>${trip.origin}</b><em>→</em><b>${trip.destination}</b></span>
+              <span class="history-route"><b>${trip.origin}</b><em data-lucide="arrow-right" aria-hidden="true"></em><b>${trip.destination}</b></span>
               <span class="history-mode">${trip.mode}</span>
               <strong>${trip.duration} min</strong>
               <span class="history-status ${trip.status === 'Delayed' ? 'delayed' : ''}">${trip.status}</span>
-              <span class="history-arrow">→</span>
+              <span class="history-arrow" data-lucide="arrow-right" aria-hidden="true"></span>
             </button>
           `).join('')}
         </div>
@@ -313,6 +327,8 @@
       const suffix = hour >= 12 ? 'PM' : 'AM';
       const displayHour = ((hour + 11) % 12) + 1;
       clock.textContent = `${displayHour}:${minute}:${second} ${suffix}`;
+      clock.classList.remove('clock-updated');
+      requestAnimationFrame(() => clock.classList.add('clock-updated'));
     };
 
     const animateRecentTrips = () => {
@@ -355,6 +371,7 @@
 
     renderPatterns();
     renderHistory();
+    initializeIcons();
     loadPreferences();
     syncForecastHeader(new Date());
     syncLiveClock();
@@ -375,6 +392,7 @@
       });
       if (view === 'patterns') renderPatterns();
       if (view === 'history') renderHistory();
+      initializeIcons();
       closePopovers();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -426,7 +444,8 @@
       if (tripButton) {
         const trip = trips[tripButton.dataset.tripIndex];
         const tripDetail = $('[data-trip-detail]');
-        if (tripDetail) tripDetail.innerHTML = `<b>${trip.date}</b><span>${trip.origin} → ${trip.destination} · ${trip.mode} · ${trip.duration} min</span><small>${trip.traffic}. ${trip.notes}</small>`;
+        if (tripDetail) tripDetail.innerHTML = `<b>${trip.date}</b><span>${trip.origin} <i data-lucide="arrow-right" aria-hidden="true"></i> ${trip.destination} <i data-lucide="dot" aria-hidden="true"></i> ${trip.mode} <i data-lucide="dot" aria-hidden="true"></i> ${trip.duration} min</span><small>${trip.traffic}. ${trip.notes}</small>`;
+        initializeIcons();
         openModal('trip-modal');
       }
     });

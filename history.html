@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body data-page="history">
   <div class="page-shell">
@@ -23,7 +24,7 @@
         <a class="active" href="history.html" data-page="history">Trip history</a>
       </div>
       <div class="profile-wrap">
-        <button class="profile-button" type="button" aria-label="Open profile menu" aria-expanded="false" aria-controls="profile-menu"><span>JD</span><b>Jordan Davis</b><i>⌄</i></button>
+        <button class="profile-button" type="button" aria-label="Open profile menu" aria-expanded="false" aria-controls="profile-menu"><span>JD</span><b>Jordan Davis</b><i data-lucide="chevron-down" aria-hidden="true"></i></button>
         <div class="popover profile-menu" id="profile-menu" hidden>
           <button type="button" data-open-profile="true">Profile</button>
           <button type="button" data-open-preferences="true">Preferences</button>
@@ -41,7 +42,7 @@
 
   <div class="modal-backdrop" id="preferences-modal" hidden>
     <section class="modal" role="dialog" aria-modal="true" aria-labelledby="preferences-title">
-      <button class="modal-close" type="button" aria-label="Close preferences">×</button>
+      <button class="modal-close" type="button" aria-label="Close preferences"><i data-lucide="x" aria-hidden="true"></i></button>
       <p class="eyebrow">Your routine</p>
       <h2 id="preferences-title">Edit preferences</h2>
       <form id="preferences-form">
@@ -58,7 +59,7 @@
 
   <div class="modal-backdrop" id="profile-modal" hidden>
     <section class="modal" role="dialog" aria-modal="true" aria-labelledby="profile-title">
-      <button class="modal-close" type="button" aria-label="Close profile">×</button>
+      <button class="modal-close" type="button" aria-label="Close profile"><i data-lucide="x" aria-hidden="true"></i></button>
       <p class="eyebrow">Commuter profile</p>
       <h2 id="profile-title">Jordan Davis</h2>
       <div class="profile-summary"><span>JD</span><div><b>Everyday commuter</b><small>South End → Cambridge</small></div></div>
@@ -68,7 +69,7 @@
 
   <div class="modal-backdrop" id="trip-modal" hidden>
     <section class="modal" role="dialog" aria-modal="true" aria-labelledby="trip-title">
-      <button class="modal-close" type="button" aria-label="Close trip details">×</button>
+      <button class="modal-close" type="button" aria-label="Close trip details"><i data-lucide="x" aria-hidden="true"></i></button>
       <p class="eyebrow">Trip details</p>
       <h2 id="trip-title">A recent journey</h2>
       <div class="trip-detail" data-trip-detail></div>

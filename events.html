@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     .feature-page .page-shell {
       max-width: 1240px;
@@ -169,7 +170,7 @@
       </div>
       <div class="profile-wrap">
         <button class="profile-button" type="button" aria-label="Open account menu" aria-expanded="false">
-          <span>AI</span><b>System ready</b><i>⌄</i>
+          <span>AI</span><b>System ready</b><i data-lucide="chevron-down" aria-hidden="true"></i>
         </button>
       </div>
     </nav>
@@ -181,7 +182,7 @@
           <h1 id="feature-title">Commute predictions<span>.</span></h1>
           <p class="lede">This screen will display the best travel time, route, and estimated arrival when commute data is available.</p>
         </div>
-        <label class="date-control" for="forecast-date"><span class="calendar-icon">□</span> <span class="date-control-text"><span id="date-label">No date selected</span><span class="live-clock" id="live-clock">Pending</span></span> <span class="chevron">⌄</span><input id="forecast-date" type="date" aria-label="Select a forecast date"></label>
+        <label class="date-control" for="forecast-date"><span class="calendar-icon" data-lucide="calendar" aria-hidden="true"></span> <span class="date-control-text"><span id="date-label">No date selected</span><span class="live-clock" id="live-clock">Pending</span></span> <span class="chevron" data-lucide="chevron-down" aria-hidden="true"></span><input id="forecast-date" type="date" aria-label="Select a forecast date"></label>
       </section>
 
       <section class="forecast-grid" aria-label="Main commute prediction area">
@@ -191,7 +192,7 @@
               <p class="eyebrow light">No prediction yet</p>
               <h2>Ready when your trip data is in.</h2>
             </div>
-            <span class="spark-icon">✦</span>
+            <span class="spark-icon" data-lucide="sparkles" aria-hidden="true"></span>
           </div>
 
           <p>Once a commute is saved, this panel will show the recommended departure time, route, and expected journey duration.</p>
@@ -290,6 +291,7 @@
             `).join('')}
           </ul>
         `;
+        if (window.lucide) lucide.createIcons();
       };
 
       try {
@@ -304,6 +306,7 @@
         console.error('Could not load travel events:', error);
         renderEmptyState();
       }
+      if (window.lucide) lucide.createIcons();
     });
   </script>
 </body>
